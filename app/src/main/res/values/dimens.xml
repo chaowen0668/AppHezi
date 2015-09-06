@@ -42,4 +42,12 @@
     <dimen name="fab_margin_right">0dp</dimen>
     <dimen name="fab_margin_bottom">0dp</dimen>
     <dimen name="tabsHeight">48dp</dimen>
+
+
+    <dimen name="main_item_height">320dip</dimen>
+    <dimen name="card_item_height">420dip</dimen>
+    <dimen name="card_item_margin">10dip</dimen>
+    <dimen name="card_item_margin_left_right">15dip</dimen>
+    <dimen name="hot_view_width">80dip</dimen>
+    <dimen name="guess_view_height">65dip</dimen>
 </resources>
