@@ -1,13 +1,13 @@
 package com.chaowen.hezi.widget;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.chaowen.hezi.R;
 import com.chaowen.hezi.model.FeedItem;
 
@@ -26,9 +26,10 @@ public class FeedItemView extends RelativeLayout implements CardStackView.CardSt
     TextView no;
 
     private FeedItem mFeedItem;
-
+    Context context;
     public FeedItemView(Context context) {
         super(context);
+        this.context = context;
         LayoutInflater.from(context).inflate(R.layout.feed_item, this, true);
         picture = (ImageView) findViewById(R.id.picture);
         id = (TextView) findViewById(R.id.id_textView);
@@ -54,11 +55,7 @@ public class FeedItemView extends RelativeLayout implements CardStackView.CardSt
         super.onAttachedToWindow();
 
         if (mFeedItem != null) {
-            int resource = getResources().getIdentifier(
-                    "content_card_x_0" + mFeedItem.getId(),
-                    "mipmap", getContext().getPackageName());
-
-            loadPicture(resource);
+            loadPicture(mFeedItem.getPhoto());
 
             id.setText(mFeedItem.toString());
         }
@@ -68,15 +65,10 @@ public class FeedItemView extends RelativeLayout implements CardStackView.CardSt
         return mFeedItem;
     }
 
-    void loadPicture(int id) {
-        Drawable drawable = getResources().getDrawable(id);
-
-        setPicture(drawable);
+    void loadPicture(String photo) {
+        Glide.with(this.context).load(photo).into(picture);
     }
 
-    void setPicture(Drawable drawable) {
-        picture.setImageDrawable(drawable);
-    }
 
     @Override
     public void onUpdateProgress(boolean positif, float percent, View view) {

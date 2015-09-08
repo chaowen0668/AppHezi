@@ -27,10 +27,8 @@ public class FeedListAdapter extends BaseAdapter {
 
     void initAdapter() {
         mItems = new ArrayList<FeedItem>();
-        for(int i=1; i<= 15; i++){
-            int index = i % 5 != 0 ? i % 5 : 1;
-            mItems.add(new FeedItem(i%5, i));
-        }
+        mItems.add(new FeedItem(1,"https://img.alicdn.com/imgextra/i3/738517069/T2o6eYXhFbXXXXXXXX_!!738517069.jpg"));
+        mItems.add(new FeedItem(2,"https://img.alicdn.com/imgextra/i3/644216784/TB2AvPgeVXXXXXrXXXXXXXXXXXX_!!644216784.jpg"));
     }
 
     @Override
