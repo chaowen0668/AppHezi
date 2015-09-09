@@ -207,10 +207,10 @@ public class CardStackView extends RelativeLayout {
 
         int position = STACK_SIZE - cardIndex;
 
-        float step = 0.025f;
+        float step = 0.015f;
 
         Resources r = getContext().getResources();
-        float translateStep = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, r.getDisplayMetrics());
+        float translateStep = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1, r.getDisplayMetrics());
 
         float scale = step * (position - zoomFactor);
         float translate = translateStep * (position - zoomFactor);

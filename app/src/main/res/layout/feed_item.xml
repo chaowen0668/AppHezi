@@ -1,50 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gray_border">
 
     <ImageView
         android:id="@+id/picture"
-        android:src="@color/icons"
+        android:src="@mipmap/img1"
         android:scaleType="centerCrop"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-    <TextView
-        android:id="@+id/id_textView"
-        tools:text="3"
-        android:layout_centerInParent="true"
-        android:layout_width="wrap_content"
-        android:textSize="60dp"
-        android:layout_height="wrap_content" android:textAppearance="?android:textAppearanceLarge"/>
+        android:layout_height="0dip"
+        android:layout_weight="1"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="5dp">
+      <TextView
+         style="@style/TextLarge" android:text="真皮手表表表表表表表表表表表表表表表表表表表表表表表表表表" android:ellipsize="end" android:maxLines="2" android:layout_margin="5dp"/>
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_margin="5dp">
+         <LinearLayout
+             android:layout_weight="1"
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:gravity="center|left" android:layout_marginLeft="10dp">
+             <ImageButton
+                 android:layout_width="40dp"
+                 android:layout_height="40dip"
+                 android:background="@drawable/btn_like_selector"/>
+             <TextView style="@style/TextSmall" android:text="89人喜欢"
+                  />
+         </LinearLayout>
+         <LinearLayout
+             android:layout_weight="1"
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:gravity="right"
+             android:layout_marginRight="10dp"
+             >
+             <com.chaowen.hezi.widget.RoundButton
+                 android:layout_width="wrap_content"
+                 android:layout_height="40dp"
+                 app:shadowEnabled="false"
+                 app:buttonColor="@color/red_bg"
+                 app:cornerRadius="5dp"
+                 style="@style/TextLarge"  android:textColor="@color/white" android:text="喜欢" />
 
-    <TextView
-        tools:alpha="1"
-        android:alpha="0"
-        android:id="@+id/no"
-        android:text="No"
-        android:textSize="40dp"
-        android:textColor="#FF0000"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="7dp"
-        android:layout_marginRight="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+         </LinearLayout>
+     </LinearLayout>
 
-    <TextView
-        tools:alpha="1"
-        android:alpha="0"
-        android:id="@+id/ok"
-        android:text="Ok"
-        android:textSize="40dp"
-        android:textColor="#00FF00"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="7dp"
-        android:layout_marginRight="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-</RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

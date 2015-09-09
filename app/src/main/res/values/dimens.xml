@@ -50,4 +50,13 @@
     <dimen name="card_item_margin_left_right">15dip</dimen>
     <dimen name="hot_view_width">80dip</dimen>
     <dimen name="guess_view_height">65dip</dimen>
+
+
+    <!-- 自定义按钮 fbutton 默认值  -->
+    <dimen name="fbutton_default_conner_radius">8dp</dimen>
+    <dimen name="fbutton_default_padding_left">10dp</dimen>
+    <dimen name="fbutton_default_padding_right">10dp</dimen>
+    <dimen name="fbutton_default_padding_top">5dp</dimen>
+    <dimen name="fbutton_default_padding_bottom">5dp</dimen>
+    <dimen name="fbutton_default_shadow_height">4dp</dimen>
 </resources>

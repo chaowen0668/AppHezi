@@ -32,9 +32,7 @@ public class FeedItemView extends RelativeLayout implements CardStackView.CardSt
         this.context = context;
         LayoutInflater.from(context).inflate(R.layout.feed_item, this, true);
         picture = (ImageView) findViewById(R.id.picture);
-        id = (TextView) findViewById(R.id.id_textView);
-        ok = (TextView) findViewById(R.id.ok);
-        no = (TextView) findViewById(R.id.no);
+
     }
 
 

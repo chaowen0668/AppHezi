@@ -16,13 +16,13 @@ import android.view.View;
 import android.widget.AdapterView;
 
 import com.chaowen.hezi.R;
-import com.chaowen.hezi.adapter.FeedListAdapter;
+import com.chaowen.hezi.adapter.FeedListAdapter2;
+import com.chaowen.hezi.model.FeedItem;
 import com.chaowen.hezi.ui.activity.base.BaseActivity;
 import com.chaowen.hezi.ui.fragment.NewsListFragment;
 import com.chaowen.hezi.utils.Constants;
 import com.chaowen.hezi.utils.ToastUtils;
 import com.chaowen.hezi.widget.CardStackView;
-import com.chaowen.hezi.widget.FeedItemView;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.typeface.FontAwesome;
@@ -40,7 +40,9 @@ import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
 import java.lang.reflect.Field;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import butterknife.Bind;
@@ -73,26 +75,26 @@ public class MainActivity extends BaseActivity {
         mCardStack.setCardStackListener(new CardStackView.CardStackListener() {
             @Override
             public void onUpdateProgress(boolean choice, float percent, View view) {
-                FeedItemView item = (FeedItemView) view;
-                item.onUpdateProgress(choice, percent, view);
+
             }
 
             @Override
             public void onCancelled(View beingDragged) {
-                FeedItemView item = (FeedItemView) beingDragged;
-                item.onCancelled(beingDragged);
+
             }
 
             @Override
             public void onChoiceMade(boolean choice, View beingDragged) {
-                FeedItemView item = (FeedItemView) beingDragged;
-                item.onChoiceMade(choice, beingDragged);
+
             }
         });
     }
 
     private void doInitialize() {
-        mCardStack.setAdapter(new FeedListAdapter(this));
+      List<FeedItem> mItems = new ArrayList<FeedItem>();
+        mItems.add(new FeedItem(1,"https://img.alicdn.com/imgextra/i3/738517069/T2o6eYXhFbXXXXXXXX_!!738517069.jpg"));
+        mItems.add(new FeedItem(2,"https://img.alicdn.com/imgextra/i3/644216784/TB2AvPgeVXXXXXrXXXXXXXXXXXX_!!644216784.jpg"));
+        mCardStack.setAdapter(new FeedListAdapter2(this,mItems));
     }
 
     @Override
