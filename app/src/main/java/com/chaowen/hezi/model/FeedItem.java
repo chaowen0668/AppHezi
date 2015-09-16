@@ -1,23 +1,19 @@
 package com.chaowen.hezi.model;
 
+import cn.bmob.v3.BmobObject;
+
 /**
  * Created by diallo on 21/03/14.
  */
-public class FeedItem {
-    private int mIndex;
+public class FeedItem extends BmobObject {
+    private String title;
     private String photo;
-    public FeedItem(int index,String photo) {
-        this.mIndex = index;
-        this.photo = photo;
+    private String likenum;
+    private String url;
+    public FeedItem() {
     }
 
-    public int getmIndex() {
-        return mIndex;
-    }
 
-    public void setmIndex(int mIndex) {
-        this.mIndex = mIndex;
-    }
 
     public String getPhoto() {
         return photo;
@@ -27,8 +23,28 @@ public class FeedItem {
         this.photo = photo;
     }
 
-    @Override
-    public String toString() {
-        return "Card #"+mIndex;
+
+    public String getLikenum() {
+        return likenum;
+    }
+
+    public void setLikenum(String likenum) {
+        this.likenum = likenum;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

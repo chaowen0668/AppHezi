@@ -19,8 +19,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginBottom="5dp">
-      <TextView
-         style="@style/TextLarge" android:text="真皮手表表表表表表表表表表表表表表表表表表表表表表表表表表" android:ellipsize="end" android:maxLines="2" android:layout_margin="5dp"/>
+      <TextView android:id="@+id/title"
+         style="@style/TextLarge" android:text="" android:ellipsize="end" android:maxLines="2" android:layout_margin="5dp"/>
      <LinearLayout
          android:layout_width="match_parent"
          android:layout_height="wrap_content"
@@ -31,10 +31,11 @@
              android:layout_height="wrap_content"
              android:gravity="center|left" android:layout_marginLeft="10dp">
              <ImageButton
+                 android:id="@+id/likebtn"
                  android:layout_width="40dp"
                  android:layout_height="40dip"
                  android:background="@drawable/btn_like_selector"/>
-             <TextView style="@style/TextSmall" android:text="89人喜欢"
+             <TextView android:id="@+id/liketv" style="@style/TextSmall" android:text=""
                   />
          </LinearLayout>
          <LinearLayout
@@ -45,12 +46,13 @@
              android:layout_marginRight="10dp"
              >
              <com.chaowen.hezi.widget.RoundButton
+                 android:id="@+id/wantBtn"
                  android:layout_width="wrap_content"
                  android:layout_height="40dp"
                  app:shadowEnabled="false"
                  app:buttonColor="@color/red_bg"
                  app:cornerRadius="5dp"
-                 style="@style/TextLarge"  android:textColor="@color/white" android:text="喜欢" />
+                 style="@style/TextLarge"  android:textColor="@color/white" android:text="我想要" />
 
          </LinearLayout>
      </LinearLayout>

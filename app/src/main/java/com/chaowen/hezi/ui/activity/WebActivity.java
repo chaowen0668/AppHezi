@@ -1,6 +1,7 @@
 package com.chaowen.hezi.ui.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -32,6 +33,13 @@ public class WebActivity extends ToolbarActivity {
 
     Context mContext;
     String mUrl, mTitle;
+
+    public static void actionStart(Context context,String url,String title){
+        Intent intent = new Intent(context,WebActivity.class);
+        intent.putExtra(EXTRA_URL,url);
+        intent.putExtra(EXTRA_TITLE,title);
+        context.startActivity(intent);
+    }
 
     @Override
     protected int getLayoutResource() {

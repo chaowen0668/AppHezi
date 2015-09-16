@@ -14,8 +14,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.TextView;
 
 import com.chaowen.hezi.R;
+import com.chaowen.hezi.adapter.AppBaseAdapter;
 import com.chaowen.hezi.adapter.FeedListAdapter2;
 import com.chaowen.hezi.model.FeedItem;
 import com.chaowen.hezi.ui.activity.base.BaseActivity;
@@ -40,14 +42,15 @@ import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
 import java.lang.reflect.Field;
 import java.text.DateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.UpdateListener;
 
 
 public class MainActivity extends BaseActivity {
@@ -59,6 +62,7 @@ public class MainActivity extends BaseActivity {
     @Bind(R.id.toolbar) Toolbar toolbar;
     @Bind(R.id.mCardStack)
     CardStackView mCardStack;
+    FeedListAdapter2 feedListAdapter;
     /**数据队列*/
     private ConcurrentLinkedQueue<Integer> dataList;
     @Override
@@ -91,10 +95,61 @@ public class MainActivity extends BaseActivity {
     }
 
     private void doInitialize() {
-      List<FeedItem> mItems = new ArrayList<FeedItem>();
+        feedListAdapter = new FeedListAdapter2(MainActivity.this, null);
+    /*  List<FeedItem> mItems = new ArrayList<FeedItem>();
         mItems.add(new FeedItem(1,"https://img.alicdn.com/imgextra/i3/738517069/T2o6eYXhFbXXXXXXXX_!!738517069.jpg"));
-        mItems.add(new FeedItem(2,"https://img.alicdn.com/imgextra/i3/644216784/TB2AvPgeVXXXXXrXXXXXXXXXXXX_!!644216784.jpg"));
-        mCardStack.setAdapter(new FeedListAdapter2(this,mItems));
+        mItems.add(new FeedItem(2, "https://img.alicdn.com/imgextra/i3/644216784/TB2AvPgeVXXXXXrXXXXXXXXXXXX_!!644216784.jpg"));
+        mCardStack.setAdapter(new FeedListAdapter2(this, mItems));*/
+        BmobQuery<FeedItem> query = new BmobQuery<>();
+
+        query.findObjects(this, new FindListener<FeedItem>() {
+            @Override
+            public void onSuccess(List<FeedItem> list) {
+                System.out.println("查询成功"+list.size());
+                feedListAdapter.addItems(list);
+                mCardStack.setAdapter(feedListAdapter);
+            }
+
+            @Override
+            public void onError(int i, String s) {
+               System.out.println();
+            }
+        });
+
+        feedListAdapter.setOnInViewClickListener(R.id.likebtn, new AppBaseAdapter.onInternalClickListener() {
+            @Override
+            public void OnClickListener(final View parentV, View v, Integer position, Object values) {
+                FeedItem feedItem = feedListAdapter.getItem(position);
+                FeedItem newfeedItem = new FeedItem();
+                int num = Integer.parseInt(feedItem.getLikenum());
+                ++num;
+                feedItem.setLikenum(num + "");
+                newfeedItem.setLikenum(num + "");
+                newfeedItem.setPhoto(feedItem.getPhoto());
+                newfeedItem.setUrl(feedItem.getUrl());
+                final int tnum = num;
+                newfeedItem.update(MainActivity.this, feedItem.getObjectId(), new UpdateListener() {
+                    @Override
+                    public void onSuccess() {
+                        TextView tv = (TextView) parentV.findViewById(R.id.liketv);
+                        tv.setText(tnum + "人喜欢");
+                    }
+
+                    @Override
+                    public void onFailure(int i, String s) {
+                        System.out.println(s);
+                    }
+                });
+            }
+        });
+
+        feedListAdapter.setOnInViewClickListener(R.id.wantBtn, new AppBaseAdapter.onInternalClickListener() {
+            @Override
+            public void OnClickListener(View parentV, View v, Integer position, Object values) {
+                FeedItem feedItem = feedListAdapter.getItem(position);
+                WebActivity.actionStart(MainActivity.this,feedItem.getUrl(),feedItem.getTitle());
+            }
+        });
     }
 
     @Override

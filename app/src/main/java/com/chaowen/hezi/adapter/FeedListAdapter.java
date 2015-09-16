@@ -8,7 +8,6 @@ import android.widget.BaseAdapter;
 import com.chaowen.hezi.model.FeedItem;
 import com.chaowen.hezi.widget.FeedItemView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,14 +21,9 @@ public class FeedListAdapter extends BaseAdapter {
 
     public FeedListAdapter(Context context) {
         this.context = context;
-        initAdapter();
+        //initAdapter();
     }
 
-    void initAdapter() {
-        mItems = new ArrayList<FeedItem>();
-        mItems.add(new FeedItem(1,"https://img.alicdn.com/imgextra/i3/738517069/T2o6eYXhFbXXXXXXXX_!!738517069.jpg"));
-        mItems.add(new FeedItem(2,"https://img.alicdn.com/imgextra/i3/644216784/TB2AvPgeVXXXXXrXXXXXXXXXXXX_!!644216784.jpg"));
-    }
 
     @Override
     public int getCount() {
